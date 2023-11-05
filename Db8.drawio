@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-05T17:01:43.122Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="tyMkPaqMYrH4M-aMylFG" version="15.8.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-05T17:03:01.323Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="emNhv0iqPdJQctaWkoNM" version="15.8.8" type="github">
   <diagram name="Page-1" id="2cc2dc42-3aac-f2a9-1cec-7a8b7cbee084">
     <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -65,7 +65,7 @@
           <mxGeometry x="265" y="210" width="200" height="290" as="geometry" />
         </mxCell>
         <mxCell id="Deu1jy65ey_SOxP0aJrx-37" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Debate Description&lt;/font&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.forms.pwField;strokeColor=#999999;mainText=;align=left;fontColor=#666666;fontSize=17;spacingLeft=3;" parent="7026571954dc6520-1" vertex="1">
-          <mxGeometry x="290" y="301" width="150" height="119" as="geometry" />
+          <mxGeometry x="290" y="301" width="150" height="39" as="geometry" />
         </mxCell>
         <mxCell id="Deu1jy65ey_SOxP0aJrx-38" value="Create New Debate" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#666666;mainText=;buttonStyle=round;fontSize=17;fontStyle=0;fillColor=none;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;" parent="7026571954dc6520-1" vertex="1">
           <mxGeometry x="285" y="440" width="160" height="30" as="geometry" />
@@ -90,6 +90,12 @@
         </mxCell>
         <mxCell id="Deu1jy65ey_SOxP0aJrx-46" value="&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Some default text to fill some space, and&amp;nbsp;&lt;/span&gt;&lt;span&gt;something more so there is more text&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;hr id=&quot;null&quot; style=&quot;text-align: justify&quot;&gt;&lt;span&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Some default text to fill some space, and&amp;nbsp;&lt;/span&gt;&lt;span&gt;something more so there is more text&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;hr id=&quot;null&quot; style=&quot;text-align: justify&quot;&gt;&lt;span&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Some default text to fill some space, and&amp;nbsp;&lt;/span&gt;&lt;span&gt;something more so there is more text&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;hr id=&quot;null&quot; style=&quot;text-align: left&quot;&gt;" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;verticalAlign=top;" parent="7026571954dc6520-1" vertex="1">
           <mxGeometry x="510" y="345" width="290" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="IpHPEHHJtMnY3YuG-8RQ-1" value="&lt;font style=&quot;font-size: 15px&quot;&gt;Number of Part.&lt;/font&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.forms.pwField;strokeColor=#999999;mainText=;align=left;fontColor=#666666;fontSize=17;spacingLeft=3;" vertex="1" parent="7026571954dc6520-1">
+          <mxGeometry x="290" y="350" width="150" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="IpHPEHHJtMnY3YuG-8RQ-2" value="&lt;font style=&quot;font-size: 15px&quot;&gt;Start/end datetime&lt;/font&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.forms.pwField;strokeColor=#999999;mainText=;align=left;fontColor=#666666;fontSize=17;spacingLeft=3;" vertex="1" parent="7026571954dc6520-1">
+          <mxGeometry x="290" y="395.5" width="150" height="39" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
