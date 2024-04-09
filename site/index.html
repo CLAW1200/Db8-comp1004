@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Debate Box</title>
+    <style>
+        .info-box, .debate-list {
+            width: 300px;
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .debate-item {
+            border: 1px solid grey;
+            margin: 10px 0;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .debate-item:hover {
+            background-color: #afe8ab;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-box">
+        <h2>Create New Debate</h2>
+        <input type="text" id="title" placeholder="New Debate Title">
+        <br>
+        <input type="text" id="description" placeholder="Debate Description">
+        <br>
+        <input type="number" id="participants" placeholder="Number of Participants">
+        <br>
+        <input type="number" id="duration" placeholder="Duration of the Debate">
+        <br>
+        <button onclick="saveDebate()">Save Debate</button>
+    </div>
+
+    <div class="debate-list">
+        <h2>Debate List</h2>
+        <input type="text" id="search" placeholder="Search Debates">
+        <button onclick="searchDebate()">Search</button>
+        <br>
+        <input type="file" id="upload" accept=".json">
+        <button onclick="uploadDebate()">Upload Debate</button>
+        <br>
+        <div id="debate-container">
+            <div class="debate-item">Debate Title 1</div>
+            <div class="debate-item">Debate Title 2</div>
+            <div class="debate-item">Debate Title 3</div>
+            <!-- More debate items can be added here -->
+        </div>
+    </div>
+
+    <script>
+        function saveDebate() {
+            var title = document.getElementById('title').value;
+            var description = document.getElementById('description').value;
+            var participants = document.getElementById('participants').value;
+            var duration = document.getElementById('duration').value;
+
+            var debate = {
+                title: title,
+                description: description,
+                participants: participants,
+                duration: duration
+            };
+
+            var jsonDebate = JSON.stringify(debate);
+
+            // Save jsonDebate to a JSON file and download it
+            var blob = new Blob([jsonDebate], {type: "application/json"});
+            var url  = URL.createObjectURL(blob); 
+
+            var a = document.createElement('a');
+            a.download    = "debate.json";
+            a.href        = url;
+            a.textContent = "Download debate.json";
+
+            document.body.appendChild(a);
+
+            // Download the file
+            a.click();
+
+            // Cleanup
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        function uploadDebate() {
+            var fileInput = document.getElementById('upload');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var content = e.target.result;
+                var debate = JSON.parse(content);
+
+                var debateContainer = document.getElementById('debate-container');
+                var debateItems = debateContainer.getElementsByClassName('debate-item');
+                var isDuplicate = false;
+
+                for (var i = 0; i < debateItems.length; i++) {
+                    var existingDebateTitle = debateItems[i].textContent;
+                    if (existingDebateTitle === debate.title) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate) {
+                    var debateItem = document.createElement('div');
+                    debateItem.className = 'debate-item';
+                    debateItem.textContent = debate.title;
+
+                    debateContainer.appendChild(debateItem);
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        function searchDebate() {
+            var search = document.getElementById('search').value;
+            var debateItems = document.getElementsByClassName('debate-item');
+
+            for (var i = 0; i < debateItems.length; i++) {
+                var debateItem = debateItems[i];
+                var debateTitle = debateItem.textContent;
+
+                if (debateTitle.indexOf(search) > -1) {
+                    debateItem.style.display = '';
+                } else {
+                    debateItem.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
