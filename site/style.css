@@ -1,0 +1,82 @@
+header {
+    text-align: top;
+    background-color: #b2d1ff;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid black;
+
+}
+body {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 5;
+    padding: 5;
+}
+.create-debate-box{
+    width: 300px;
+    border: 3px solid black;
+    padding: 10px;
+    margin-right: 10px;
+}
+.debate-room-list-box{
+    width: 300px;
+    border: 3px solid black;
+    padding: 10px;
+    margin-right: 10px;
+}
+.debate-item {
+    border: 3px solid grey;
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+}
+.debate-item:hover {
+    background-color: #8dd888;
+}
+.chat-box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 66%;
+    background-color: #b2d1ff;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid black;
+    margin: auto;
+
+}
+#chat-history p {
+    margin: 0;
+    padding: 5px;
+    border-bottom: 1px solid #00aeff;
+}
+#chat-history p:last-child {
+    border-bottom: none;
+}
+#chat-history p:nth-child(odd) {
+    background-color: #b4f4ff;
+}
+.debate-info-box {
+    position: fixed;
+    bottom: 0;
+    left: 0; 
+    width: calc(28%);
+    background-color: #b2d1ff;
+    padding: 10px;
+    text-align: center;
+    border: 3px solid black;
+    margin: auto;
+}
+#debate-info p {
+    margin: 0;
+    padding: 5px;
+    border-bottom: 1px solid #00aeff;
+}
+.login-box {
+    width: 300px;
+    border: 3px solid black;
+    padding: 10px;
+    margin-right: 10px;
+}
