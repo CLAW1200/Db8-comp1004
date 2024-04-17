@@ -1,5 +1,12 @@
 
 function sendMessage() {
+    // check if user is logged in
+    var username = document.getElementsByTagName('header')[0].getElementsByTagName('h3')[0].textContent.split(': ')[1];
+    if (username === '') {
+        alert('Please login to send messages');
+        return;
+    }
+
     var message = document.getElementById('message').value;
     addChatMessageUser('You', message);
 }
@@ -11,9 +18,6 @@ function saveDebate() {
     var duration = document.getElementById('debate-info').getElementsByTagName('p')[3].textContent.split(': ')[1];
     var chatHistory = document.getElementById('chat-history');
     
-    // get chat history
-    var chatHistory = document.getElementById('chat-history');
-
     var debate = {
         title: title,
         description: description,
@@ -29,12 +33,15 @@ function saveDebate() {
     }
     var jsonDebate = JSON.stringify(debate);
 
-    // Save jsonDebate to a JSON file and download it
-    var blob = new Blob([jsonDebate], {type: "application/json"});
+    // Encrypt jsonDebate to base64
+    var base64Debate = btoa(unescape(encodeURIComponent(jsonDebate)));
+
+    // Save base64Debate to a file and download it
+    var blob = new Blob([base64Debate], {type: "application/base64"});
     var url  = URL.createObjectURL(blob);
 
     var a = document.createElement('a');
-    a.download    = debate.title + ".json";
+    a.download    = debate.title + ".json"; // Change the extension to .txt as it's now a base64 string
     a.href        = url;
     a.textContent = "Download debate.json";
 
@@ -99,23 +106,53 @@ function login() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
 
-    // update account name in chat and header
-    var header = document.getElementsByTagName('header')[0];
-    header.getElementsByTagName('h3')[0].textContent = 'Account: ' + username;
+    // Check if username and password match from local storage
+    var storedUsername = localStorage.getItem('username');
+    var storedPassword = localStorage.getItem('password');
 
-    addChatMessageUser('System', username + " joined the chat");
+    if (username === storedUsername && password === storedPassword) {
+        
+        // update account name in chat and header
+        var header = document.getElementsByTagName('header')[0];
+        header.getElementsByTagName('h3')[0].textContent = 'Account: ' + username;
 
-    // clear login box
-    var loginBox = document.getElementsByClassName('login-box')[0];
-    loginBox.innerHTML = '';
+        addChatMessageUser('System', username + " joined the chat");
 
-    // add logout button
-    var logoutButton = document.createElement('button');
-    logoutButton.textContent = 'Logout';
-    logoutButton.onclick = function() {
-        logout();
+        // clear login box
+        var loginBox = document.getElementsByClassName('login-box')[0];
+        loginBox.innerHTML = '';
+
+        // add logout button
+        var logoutButton = document.createElement('button');
+        logoutButton.textContent = 'Logout';
+        logoutButton.onclick = function() {
+            logout();
+        };
+        loginBox.appendChild(logoutButton);
+
+    } else {
+        alert('Invalid username or password. Have you created an account?');
+    }
+
+}
+
+function createAccount() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Save username and password to local storage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // create users.json file
+    var users = [];
+    var user = {
+        username: username,
+        password: password
     };
-    loginBox.appendChild(logoutButton);
+    users.push(user);
+
+    alert('Account created successfully');
 }
 
 // Store the original HTML of the login box
@@ -214,8 +251,11 @@ function saveDebateRoomTemplate() {
 
     var jsonDebate = JSON.stringify(debate);
 
-    // Save jsonDebate to a JSON file and download it
-    var blob = new Blob([jsonDebate], {type: "application/json"});
+    // Encrypt jsonDebate to base64
+    var base64Debate = btoa(unescape(encodeURIComponent(jsonDebate)));
+
+    // Save base64Debate to a file and download it
+    var blob = new Blob([base64Debate], {type: "application/base64"});
     var url  = URL.createObjectURL(blob); 
 
     var a = document.createElement('a');
@@ -243,7 +283,15 @@ function uploadDebate() {
     if (file) { // Check if a file is selected
         reader.onload = function(e) {
             var content = e.target.result;
-            var debate = JSON.parse(content);
+
+              
+            try {     
+                var debate = JSON.parse(content);
+            } catch (error) {
+                content = decodeURIComponent(escape(atob(content)));
+                var debate = JSON.parse(content);
+            }
+                  
 
             var debateContainer = document.getElementById('debate-container');
             var debateItems = debateContainer.getElementsByClassName('debate-item');
