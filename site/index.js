@@ -103,7 +103,7 @@ function login() {
     var header = document.getElementsByTagName('header')[0];
     header.getElementsByTagName('h3')[0].textContent = 'Account: ' + username;
 
-    addChatMessageUser('You', 'Logged in as ' + username);
+    addChatMessageUser('System', username + " joined the chat");
 
     // clear login box
     var loginBox = document.getElementsByClassName('login-box')[0];
@@ -118,13 +118,16 @@ function login() {
     loginBox.appendChild(logoutButton);
 }
 
+// Store the original HTML of the login box
+var originalLoginBoxHTML = document.getElementsByClassName('login-box')[0].innerHTML;
+
 function logout() {
+    var username = document.getElementsByTagName('header')[0].getElementsByTagName('h3')[0].textContent.split(': ')[1];
     // clear account name in chat and header
     var header = document.getElementsByTagName('header')[0];
     header.getElementsByTagName('h3')[0].textContent = 'Account: ';
 
-    addChatMessageUser('You', 'Logged out');
-
+    addChatMessageUser('System', username + " left the chat");
     // revert login box to original state
     var loginBox = document.getElementsByClassName('login-box')[0];
     loginBox.innerHTML = originalLoginBoxHTML;
@@ -358,7 +361,7 @@ function addDebateItemOnclick() {
                     chatHistory: JSON.parse(chatHistory)
                 };
             }
-                    
+
             loadDebateInfo(debate);
         };
     }
